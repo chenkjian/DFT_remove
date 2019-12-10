@@ -12,56 +12,42 @@ using namespace std;
 
 Mat tranform(Mat& src, int flag, Mat& dst);
 Mat proceFre(Mat & src, int flag);
+void resizeSyetem(Mat& src, Mat& dst);
 
 int main()
 {
-	Mat srcImage1 = imread("H:\\old\\Canada\\animal\\mmexport1514286161524.jpg");
-	Mat srcImage2;
-	//srcImage2 = imread("C:/Users/chenkj/Desktop/测试印花/person.jpg");
-	////////////////////////////////////////////////////////////////////////////
-		int nWidth, nHeight;
-		nWidth = GetSystemMetrics(SM_CXFULLSCREEN);
-		nHeight = GetSystemMetrics(SM_CYFULLSCREEN);
-		printf("当前屏幕的分辨率为：%d×%d", nWidth, nHeight);
-	
-		int newHeight, newWidth;
-		if ((srcImage1.rows / nHeight) >= (srcImage1.cols / nWidth))
-		{
-			newHeight = nHeight;
-			newWidth = nHeight*srcImage1.cols / srcImage1.rows;
-		}
-		else {
-			newHeight = nWidth*srcImage1.rows / srcImage1.cols;
-			newWidth = nWidth;
-		}
-	
-		Size size = Size(newWidth, newHeight);
-		resize(srcImage1, srcImage1, size, 0, 0);
-		//////////////////////////////////////////////
+	//Mat srcImage1 = imread("H:\\old\\Canada\\animal\\mmexport1514286161524.jpg");
+	Mat srcImage1 = imread("H:\\old\\Canada\\animal\\IMG_20190706_112230.jpg"); 
+	Mat srcImage2 = imread("H:\\old\\Canada\\animal\\IMG_20190709_091815.jpg");	
+
+	resizeSyetem(srcImage1, srcImage1);
+	resize(srcImage2, srcImage2, srcImage1.size(), 0);
 
 	imshow("原图1", srcImage1);
-	//imshow("原图2", srcImage2);
+	imshow("原图2", srcImage2);
 
-	Mat dstImage;
 	Mat dstImage1;
-	Mat srcChannels[3];//存放原图三个通道
-	Mat dstChannels[3];//存放结果图三个通道
-	Mat dstChannels1[3];//存放原图三个通道
+	Mat dstImage2;
+	Mat srcChannels1[3];//存放原图1三个通道
+	Mat srcChannels2[3];//存放原图2三个通道
+	Mat dstChannels1[3];//存放结果图1三个通道
+	Mat dstChannels2[3];//存放结果图2三个通道
 
-	split(srcImage1, srcChannels);
+	split(srcImage1, srcChannels1);
+	split(srcImage2, srcChannels2);
 
 	for (size_t i = 0; i < 3; i++)
 	{
-		tranform(srcChannels[i], 0, dstChannels[i]);
-		tranform(srcChannels[i], 1, dstChannels1[i]);
+		tranform(srcChannels1[i], 0, dstChannels1[i]);
+		tranform(srcChannels2[i], 1, dstChannels2[i]);
 	}
 
-	merge(dstChannels, 3, dstImage);
-	imshow("高频", dstImage/255);
 	merge(dstChannels1, 3, dstImage1);
+	imshow("高频", dstImage1/255);
+	merge(dstChannels2, 3, dstImage2);
 	imshow("低频", dstImage1 / 255);
 
-	Mat dst = dstImage/510 + dstImage1/510;
+	Mat dst = dstImage1/510+ dstImage2/510;
 	imshow("合并", dst);
 	//imwrite("彩色图处理结果.jpg", dstImage);
 
@@ -69,7 +55,7 @@ int main()
 	return 0;
 }
 
-/*//////////////////////////////////去除网格///////////////////////////////////////////////////////////////////
+/*//////////////////////////////////fft///////////////////////////////////////////////////////////////////
 功能：保留图像高频信息或低频信息
 输入：src:单通道灰度图（一般为彩色图的各个通道）
       flag:0-保留高频信息；1-保留低频信息
@@ -213,5 +199,27 @@ Mat proceFre(Mat & src, int flag)
 	}
 
 	return src;
+}
+
+void resizeSyetem(Mat & src, Mat & dst)
+{
+	int nWidth, nHeight;
+	nWidth = GetSystemMetrics(SM_CXFULLSCREEN);
+	nHeight = GetSystemMetrics(SM_CYFULLSCREEN);
+	printf("当前屏幕的分辨率为：%d×%d", nWidth, nHeight);
+
+	int newHeight, newWidth;
+	if ((src.rows / nHeight) >= (src.cols / nWidth))
+	{
+		newHeight = nHeight;
+		newWidth = nHeight * src.cols / src.rows;
+	}
+	else {
+		newHeight = nWidth * src.rows / src.cols;
+		newWidth = nWidth;
+	}
+
+	Size size = Size(newWidth, newHeight);
+	resize(src, dst, size, 0, 0);
 }
 
