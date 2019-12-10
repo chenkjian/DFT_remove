@@ -9,7 +9,7 @@
   </PropertyGroup>
   <ItemDefinitionGroup>
     <Link>
-      <AdditionalDependencies>opencv_world341.lib</AdditionalDependencies>
+      <AdditionalDependencies>opencv_world341.lib;%(AdditionalDependencies)</AdditionalDependencies>
     </Link>
   </ItemDefinitionGroup>
   <ItemGroup />

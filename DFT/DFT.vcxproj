@@ -120,10 +120,11 @@
     </Link>
   </ItemDefinitionGroup>
   <ItemGroup>
+    <ClCompile Include="mix.cpp" />
     <ClCompile Include="test_p.cpp" />
     <ClCompile Include="stdafx.cpp" />
     <ClCompile Include="main.cpp" />
-    <ClCompile Include="源.cpp" />
+    <ClCompile Include="resize.cpp" />
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="stdafx.h" />

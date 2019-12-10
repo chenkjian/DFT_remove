@@ -1,3 +1,5 @@
+////功能：测试利用傅里叶变换去除布料中的网纹
+
 //#include <opencv2/core/core.hpp>
 //#include <opencv2/highgui/highgui.hpp>
 //#include <opencv2/imgproc/imgproc.hpp>
@@ -10,12 +12,32 @@
 //
 //Mat proceFre(Mat & src);
 //
-//int mainaaa()
+//int main()
 //{
 //	//SetConsoleTextAttribute(GetStdHandle(STD_OUTPUT_HANDLE), FOREGROUND_INTENSITY | FOREGROUND_GREEN);
 //
 //	//Mat src = imread("C:/Users/chenkj/Desktop/测试印花/person.jpg");
 //	Mat src = imread("C:/Users/chenkj/Desktop/测试印花/img_3534.tif"); 
+//
+//		//int nWidth, nHeight;
+//		//nWidth = GetSystemMetrics(SM_CXFULLSCREEN);
+//		//nHeight = GetSystemMetrics(SM_CYFULLSCREEN);
+//		//printf("当前屏幕的分辨率为：%d×%d", nWidth, nHeight);
+//
+//		//int newHeight, newWidth;
+//		//if ((src.rows / nHeight) >= (src.cols / nWidth))
+//		//{
+//		//	newHeight = nHeight;
+//		//	newWidth = nHeight*src.cols / src.rows;
+//		//}
+//		//else {
+//		//	newHeight = nWidth*src.rows / src.cols;
+//		//	newWidth = nWidth;
+//		//}
+//	
+//		//Size size = Size(newWidth, newHeight);
+//		//resize(src, src, size, 0, 0);
+//
 //
 //	Mat srcGray;
 //	cvtColor(src, srcGray, CV_RGB2GRAY); //灰度图像做傅里叶变换
