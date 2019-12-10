@@ -16,7 +16,6 @@ void resizeSyetem(Mat& src, Mat& dst);
 
 int main()
 {
-	//Mat srcImage1 = imread("H:\\old\\Canada\\animal\\mmexport1514286161524.jpg");
 	Mat srcImage1 = imread("H:\\old\\Canada\\animal\\IMG_20190706_112230.jpg"); 
 	Mat srcImage2 = imread("H:\\old\\Canada\\animal\\IMG_20190709_091815.jpg");	
 
@@ -49,7 +48,7 @@ int main()
 
 	Mat dst = dstImage1/510+ dstImage2/510;
 	imshow("合并", dst);
-	//imwrite("彩色图处理结果.jpg", dstImage);
+	imwrite("合并.jpg", dst);
 
 	waitKey(0);
 	return 0;
